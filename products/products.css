@@ -92,3 +92,65 @@ body{
     list-style: none;
     position: center;
   }
+
+  h1 {
+    color: black;
+    background-color: lightblue
+  }
+  
+  .card {
+   background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin:auto ;
+    text-align: center;
+    font-family: arial;
+    align-content: center
+  }
+  
+  .price {
+    background-color: white;
+    color: grey;
+    font-size: 22px;
+    align-content: center
+  }
+  
+  .card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: black;
+    background-color: lightblue;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    align-content: center
+  }
+  
+  .card button:hover {
+    opacity: 0.7;
+  }
+  
+  /* Three image containers (use 25% for four, and 50% for two, etc) */
+  .column {
+    float: left;
+    width: 33%;
+    padding: 2px;
+  }
+  
+  /* Clear floats after image containers */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .Logo{
+    background-color:lightblue;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    font-size: 150%;
+    justify-content: center;
+    }
