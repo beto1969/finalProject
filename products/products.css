@@ -92,11 +92,6 @@ body{
     list-style: none;
     position: center;
   }
-
-  h1 {
-    color: black;
-    background-color: lightblue
-  }
   
   .card {
    background-color: white;
@@ -120,7 +115,7 @@ body{
     outline: 0;
     padding: 12px;
     color: black;
-    background-color: lightblue;
+    background-color: lightcoral;
     text-align: center;
     cursor: pointer;
     width: 100%;
