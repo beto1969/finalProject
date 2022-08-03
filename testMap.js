@@ -23,17 +23,36 @@ function initMap() {
             // Create the places service.
             var service = new google.maps.places.PlacesService(map);
 
+
+            // create getnextpage function
+            function getNextPage(results, status, pagination) {
+                if (status !== google.maps.places.PlacesServiceStatus.OK) {
+                    return;
+                } else if (pagination.hasNextPage) {
+                    var moreButton = document.getElementById('more');
+                    moreButton.disabled = false;
+                    moreButton.addEventListener('click', function () {
+                        moreButton.disabled = true;
+                        pagination.nextPage();
+                    });
+                } else {
+                    document.getElementById('more').disabled = true;
+                }
+            }
+
+
+
+
+
             const moreButton = document.getElementById("more");
 
-            //  let getNextPage:  () => false;//
-
             moreButton.onclick = function () {
-                moreButton.disabled = true;
-                let getNextPage = false;
+               moreButton.disabled = true;
+
                 if (getNextPage) {
-                    getNextPage();
+                   getNextPage();
                 }
-            };
+           };
 
 
             // Perform a nearby search.
@@ -46,31 +65,120 @@ function initMap() {
 
                     return;
                 } else {
+                    const placesList = document.getElementById("places");
+                    for (const place of results) {
 
-                    addPlaces(results,map);
-                    // Create a marker for each hotel found, and add it to the map.
-                    /*
+
+                        const li = document.createElement("li");//create a list item
+
+                        li.textContent = place.name;
+                        placesList.appendChild(li);
+                        var lat = place.geometry.location.lat();
+                        var lng = place.geometry.location.lng();
+                        //when the list item is clicked, the map will center on the location of the list item
+                        li.addEventListener("click", function () {
+
+                                map.setCenter(place.geometry.location);
+                                map.setZoom(15);
+                                //make an info window with the name of the place
+                                var infowindow = new google.maps.InfoWindow({
+                                    content:"you are here"
+                                });
+                                //open the info window
+                                infowindow.open(map, place.geometry.location);
+
+
+
+
+
+
+
+
+                            }
+
+                        );
+                    }
+
+
+
+                    // Create a marker for each trail found, and add it to the map.
                     for (var i = 0; i < results.length; i++) {
 
+                        const image = {
+                                url: results[i].icon,
+                                size: new google.maps.Size(71, 71),
+                                origin: new google.maps.Point(0, 0),
+                                anchor: new google.maps.Point(17, 34),
+                                scaledSize: new google.maps.Size(25, 25),
+                            };
+
+                            const marker = new google.maps.Marker({
+                                map,
+                                icon: image,
+                                title: results[i].name,
+                                position: results[i].geometry.location
 
 
-                        // info window to show the name of the marker
+                            });
+                            marker.setAnimation(google.maps.Animation.DROP);
 
-                        var infowindow = new google.maps.InfoWindow({
-                            content: results[i].name,
-                            position: results[i].geometry.location
+                            const infowindow = new google.maps.InfoWindow({
+                                content: results[i].name,
+
+                            });
+                        function mark() {
+                            marker.addListener("click", () => {
+
+                                //zoom in on the marker with a animation
+                                marker.setAnimation(google.maps.Animation.BOUNCE);
+                                setTimeout(() => {
+                                    marker.setAnimation(null);
+                                }, 1000);
+                                map.setCenter(marker.getPosition());
+                                //zoom in slowly on the marker
+                                map.setZoom(15);
+                                setTimeout(() => {
+                                    map.setZoom(14);
+                                }, 2000);
+
+                                //automatically close the info window when the user clicks on the marker
+                                infowindow.open(map, marker);
+                                setTimeout(() => {
+                                    infowindow.close();
+                                    highLight(null);
+                                }, 5000);
+                                highLight(marker.title);
+
+
+                            });
+                        }
+                        mark();
+
+
+
+
+                        }
+                    function highLight(name) {
+                        placesList.querySelectorAll("li").forEach(function (li) {
+                            if (li.textContent === name) {
+                                //change the color of the list item to red
+                                li.style.color = "red";
+//
+                            }else {
+                                li.style.color = "black";
+                            }
                         });
-                        // event display name of place when clicked on marker
-                        marker.addListener('click', function () {
-                            infowindow.open(map, marker);
-                        });
+                    }
 
+
+                    if (pagination && pagination.hasNextPage) {
+                        getNextPage = () => {
+                            // Note: nextPage will call the same handler function as the initial call
+                            pagination.nextPage();
+                        };
+                    }
 
                     }
-                    //display name of place when clicked on marker
-*/
-
-                }
 
 
             });
@@ -81,51 +189,14 @@ function initMap() {
     }
 
 
+
+
+
+
+
+
 }
 
-    function addPlaces(
-        //take in new places from nearbySearch
-        results,
-        map
-
-    ) {
-        for (const place of places) {
-            var placesList = document.getElementById("places");//
-
-
-            let image = {
-                url: place.icon,
-                size: new google.maps.Size(71, 71),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(17, 34),
-                scaledSize: new google.maps.Size(25, 25)
-            };
-            var marker = new google.maps.Marker({
-                position: place.geometry.location,
-                map: map,
-                icon: image
-            });
-            //show the marker on the map
-            window.marker = marker;
-
-
-            // Create a marker for each place.
-
-
-
-            const li = document.createElement("li");//create a list item
-
-            li.textContent = place.name;
-            placesList.appendChild(li);
-
-            li.addEventListener("click", () => {//add a click event listener to the list item
-                //set the map's center to the current place
-                map.setCenter(place.geometry.location);
-
-            });
-        }
-
-}
  //start the map
 window.initMap= initMap;
 
