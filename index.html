@@ -1,4 +1,44 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+  api key = AIzaSyAM6d8UVp0Woll2rSromBDfOVuHrSCp8-A -->
+
+<html>
+  <head>
+    <title>Place Search Pagination</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <link rel="stylesheet" type="text/css" href="styleMap.css" />
+    <script type="module" src="testMap.js"></script>
+  </head>
+  <body>
+    <div id="container">
+      <<div id="map"></div>
+      <!-- add review section here -->
+       <div id="reviews"></div>
+      <div id="sidebar">
+        <h2>Results</h2>
+        <ul id="places"></ul>
+        <button id="more">Load more results</button>
+      </div>
+    </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAM6d8UVp0Woll2rSromBDfOVuHrSCp8-A&libraries=places&callback=initMap"
+            defer
+    ></script>
+  </body>
+</html>
+=======
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -163,3 +203,4 @@
 
 </body>
 </html>
+>>>>>>> 367f09218dc9fcda01b4e9ec151d6f821bd3d028
