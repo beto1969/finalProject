@@ -1,46 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link href="style.css" rel="stylesheet" type="text/css" />
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+  api key = AIzaSyAM6d8UVp0Woll2rSromBDfOVuHrSCp8-A -->
 
-</head>
-<body>
+<html>
+  <head>
+    <title>Place Search Pagination</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-<div class="container">
-    <header>
-        <div class="wrapper">
-            <div class="logo">
-                <img onclick="window.location.href='https://www.goldendoorscholars.org/'" src="https://media-exp1.licdn.com/dms/image/C4E0BAQEjLLVRGq-P2A/company-logo_200_200/0/1560451399036?e=1664409600&v=beta&t=tmpOEtAjMEkJrfSmxXVFV8PY1UKHHmFR2ty3WmUuzr8" alt="logo" />
-            </div>
-            <nav>
+    <link rel="stylesheet" type="text/css" href="styleMap.css" />
+    <script type="module" src="testMap.js"></script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar">
+        <h2>Results</h2>
+        <ul id="places"></ul>
+        <button id="more">Load more results</button>
+      </div>
+    </div>
 
-
-                <a href = index.html >Home</a>
-                <a href= map.html>Map</a>
-
-
-            </nav>
-        </div>
-    </header>
-
-
-    <h3> Contact Us </h3>
-    <section class="box">
-        <form class="contact-form" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ" method="post" >
-            <input name="name" class="contact-form" placeholder="Your name" required/>
-            <br/>
-            <input name="email" class="contact-form" placeholder="Your email" required/>
-            <br/>
-            <input name="number" class="contact-form" placeholder="Date" required/>
-            <br>
-
-            <input  type="submit" value="Submit" id="SubmitYes" />
-            <br/>
-
-
-        </form>
-    </section>
-</div>
-</body>
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAM6d8UVp0Woll2rSromBDfOVuHrSCp8-A&libraries=places&callback=initMap"
+            defer
+    ></script>
+  </body>
 </html>
