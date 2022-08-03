@@ -295,7 +295,7 @@ body{
     padding: 16px 32px;
   }
 }
-=======
+
 *{
     margin: 0;
     padding: 0;
@@ -358,20 +358,21 @@ nav a{
     padding: 20px;
 }
 
-.contact-form{
+.contact-form {
 
     font-family: Arial;
-    font-weight:500;
+    font-weight: 500;
     font-size: 18px;
 
 
     border-radius: 5px;
     line-height: 22px;
     background-color: white;
-    border:2px black solid;
+    border: 2px black solid;
     transition: all 0.3s;
     padding: 13px;
     margin-bottom: 15px;
-    width:100%;
+    width: 100%;
     box-sizing: border-box;
-    outline:0;
+    outline: 0;
+}
